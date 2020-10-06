@@ -1,0 +1,14 @@
+﻿<h3>Medium Subtraction Problems</h3>
+<br />
+<p>
+    @ViewBag.num1 <br />
+    - @ViewBag.num2
+</p>
+<br />
+<form action="/Math/MediumSubAnswer" method="post">
+    Answer:  <input type="number" id="answer" name="answer" /><br />
+    <input type="hidden" id="num1" name="num1" value="@ViewBag.num1" />
+    <input type="hidden" id="num2" name="num2" value="@ViewBag.num2" />
+    <input type="submit" value="Submit Answer" />
+</form>
+

@@ -13,6 +13,7 @@ namespace EducationalGames.Models
             AspNetUserTokens = new HashSet<AspNetUserTokens>();
             Math = new HashSet<Math>();
             Parent = new HashSet<Parent>();
+            Science = new HashSet<Science>();
             Students = new HashSet<Students>();
             Teacher = new HashSet<Teacher>();
         }
@@ -41,6 +42,7 @@ namespace EducationalGames.Models
         public virtual ICollection<AspNetUserTokens> AspNetUserTokens { get; set; }
         public virtual ICollection<Math> Math { get; set; }
         public virtual ICollection<Parent> Parent { get; set; }
+        public virtual ICollection<Science> Science { get; set; }
         public virtual ICollection<Students> Students { get; set; }
         public virtual ICollection<Teacher> Teacher { get; set; }
     }

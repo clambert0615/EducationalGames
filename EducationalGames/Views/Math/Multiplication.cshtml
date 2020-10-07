@@ -1,10 +1,10 @@
-﻿<h3>Subtraction Problems</h3>
+﻿<h3> Multiplication Problem</h3>
 <br />
-<h5>&nbsp;&nbsp;&nbsp; @ViewBag.num1 <br />
-    - &nbsp; @ViewBag.num2
+<h5>&nbsp;&nbsp; @ViewBag.num1 <br />
+    *&nbsp;@ViewBag.num2
 </h5>
 <br />
-<form action="/Math/SubAnswer" method="post">
+<form action="/Math/MultAnswer" method="post">
     Answer:  <input type="number" id="answer" name="answer" />
     <input type="hidden" id="num1" name="num1" value="@ViewBag.num1" />
     <input type="hidden" id="num2" name="num2" value="@ViewBag.num2" />

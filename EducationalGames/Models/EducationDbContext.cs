@@ -16,9 +16,7 @@ namespace EducationalGames.Models
         {
             Configuration = configuration;
         }
-        public IConfiguration Configuration { get; private set; }
-
-
+        public IConfiguration Configuration { get; set; }
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
@@ -28,6 +26,7 @@ namespace EducationalGames.Models
         public virtual DbSet<AspNetUsers> AspNetUsers { get; set; }
         public virtual DbSet<Math> Math { get; set; }
         public virtual DbSet<Parent> Parent { get; set; }
+        public virtual DbSet<Science> Science { get; set; }
         public virtual DbSet<Students> Students { get; set; }
         public virtual DbSet<Teacher> Teacher { get; set; }
 
@@ -37,7 +36,6 @@ namespace EducationalGames.Models
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
                 optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-                ;
             }
         }
 
@@ -146,6 +144,8 @@ namespace EducationalGames.Models
                 entity.HasKey(e => e.GameId)
                     .HasName("PK__Math__2AB897FD34EC740D");
 
+                entity.Property(e => e.Type).HasMaxLength(30);
+
                 entity.Property(e => e.UserId).HasMaxLength(450);
 
                 entity.HasOne(d => d.Stud)
@@ -157,7 +157,6 @@ namespace EducationalGames.Models
                     .WithMany(p => p.Math)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK__Math__UserId__01142BA1");
-                entity.Property(e => e.Type).HasMaxLength(30);
             });
 
             modelBuilder.Entity<Parent>(entity =>
@@ -175,6 +174,18 @@ namespace EducationalGames.Models
                     .WithMany(p => p.Parent)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK__Parent__UserId__656C112C");
+            });
+
+            modelBuilder.Entity<Science>(entity =>
+            {
+                entity.Property(e => e.Type).HasMaxLength(40);
+
+                entity.Property(e => e.UserId).HasMaxLength(450);
+
+                entity.HasOne(d => d.User)
+                    .WithMany(p => p.Science)
+                    .HasForeignKey(d => d.UserId)
+                    .HasConstraintName("FK__Science__UserId__160F4887");
             });
 
             modelBuilder.Entity<Students>(entity =>

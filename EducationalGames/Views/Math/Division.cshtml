@@ -1,0 +1,13 @@
+﻿<h3>Division Problems</h3>
+<br />
+<h5>&nbsp;&nbsp; @ViewBag.Dividend <br />
+    / &nbsp; @ViewBag.Divisor
+</h5>
+<br />
+<form action="/Math/DivAnswer" method="post">
+    Answer:  <input type="number" id="answer" name="answer" />
+    <input type="hidden" id="divisor" name="divisor" value="@ViewBag.Divisor" />
+    <input type="hidden" id="dividend" name="dividend" value="@ViewBag.Dividend" />
+    <input type="hidden" id="level" name="level" value="@ViewBag.Level" />
+    <input type="submit" value="Submit Answer" />
+</form>

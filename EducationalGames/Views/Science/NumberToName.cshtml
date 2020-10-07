@@ -1,0 +1,11 @@
+﻿<h3>Periodic Table Question</h3>
+<br />
+<h5>Question: If the atomic number is @ViewBag.AtomicNumber then what is the name of this element?</h5>
+<br />
+<form action="/Science/PerTableStringAnswer" method="post">
+    Answer: <input type="text" id="answer" name="answer" />
+    <input type="hidden" id="correctAnswer" name="correctAnswer" value="@ViewBag.Name" />
+    <input type="hidden" id="type" name="type" value="@ViewBag.Type" />
+    <input type="submit" value="Submit">
+
+</form>

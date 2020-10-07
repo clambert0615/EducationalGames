@@ -1,13 +1,13 @@
-﻿<h3>Easy Subtraction Problems</h3>
+﻿<h3> Addition Problem</h3>
 <br />
-<p>
-    @ViewBag.num1 <br />
-    - @ViewBag.num2
-</p>
+<p>@ViewBag.num1 <br />
+    + @ViewBag.num2
+    </p>
 <br />
-<form action="/Math/EasySubAnswer" method="post">
+<form action="/Math/AddAnswer" method="post">
     Answer:  <input type="number" id="answer" name="answer" /><br />
     <input type="hidden" id="num1" name="num1" value="@ViewBag.num1" />
     <input type="hidden" id="num2" name="num2" value="@ViewBag.num2" />
+    <input type="hidden" id="level" name="level" value="@ViewBag.Level" />
     <input type="submit" value="Submit Answer" />
 </form>

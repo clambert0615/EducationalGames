@@ -20,94 +20,66 @@ namespace EducationalGames.Controllers
         {
             return View();
         }
-        public IActionResult EasyAddition()
+        public IActionResult Addition(int level)
         {
-            Random random = new Random();
-          
-            ViewBag.num1 = random.Next(1, 11);
-            ViewBag.num2 = random.Next(1, 11);
+            if(level != 0)
+            {
+                GetAddandSubtractNumbers(level);
+            }
+            else
+            {
+                return RedirectToAction("ErrorPage");
+            }
+            ViewBag.Level = level;
             return View();
         }
-        public IActionResult EasyAddAnswer(int answer, int num1, int num2)
+        public IActionResult AddAnswer(int answer, int num1, int num2, int level)
         {
-            int level = 1;
             string type = "addition";
             GetAddResult(answer, num1, num2, level, type);
+            ViewBag.Level = level;
             return View();
         }
-        public IActionResult MediumAddition()
+     
+    
+        public IActionResult Subtraction(int level)
         {
-            Random random = new Random();
-
-            ViewBag.num1 = random.Next(1, 100);
-            ViewBag.num2 = random.Next(1, 100);
+            if (level != 0)
+            {
+                GetAddandSubtractNumbers(level);
+            }
+            else
+            {
+                return RedirectToAction("ErrorPage");
+            }
+            ViewBag.Level = level;
             return View();
         }
-        public IActionResult MediumAddAnswer(int answer, int num1, int num2)
+        public IActionResult SubAnswer(int answer, int num1, int num2, int level)
         {
-            int level = 2;
-            string type = "addition";
-            GetAddResult(answer, num1, num2, level, type);
-            return View();
-        }
-
-        public IActionResult HardAddition()
-        {
-            Random random = new Random();
-            ViewBag.num1 = random.Next(1000 + 1000) - 1000;
-            ViewBag.num2 = random.Next(1000 + 1000) - 1000;
-            return View();
-        }
-        public IActionResult HardAddAnswer(int answer, int num1, int num2)
-        {
-            int level = 3;
-            string type = "addition";
-            GetAddResult(answer, num1, num2, level, type);
-            return View();
-        }
-        public IActionResult EasySubtraction()
-        {
-            Random random = new Random();
-
-            ViewBag.num1 = random.Next(1, 11);
-            ViewBag.num2 = random.Next(1, 11);
-            return View();
-        }
-        public IActionResult EasySubAnswer(int answer, int num1, int num2)
-        {
-            int level = 1;
             string type = "subtraction";
             GetSubtractResult(answer, num1, num2, level, type);
+            ViewBag.Level = level;
             return View();
         }
-        public IActionResult MediumSubtraction()
+       public void GetAddandSubtractNumbers(int level)
         {
             Random random = new Random();
-
-            ViewBag.num1 = random.Next(1, 100);
-            ViewBag.num2 = random.Next(1, 100);
-            return View();
-        }
-        public IActionResult MediumSubAnswer(int answer, int num1, int num2)
-        {
-            int level = 2;
-            string type = "subtraction";
-            GetSubtractResult(answer, num1, num2, level, type);
-            return View();
-        }
-        public IActionResult HardSubtraction()
-        {
-            Random random = new Random();
-            ViewBag.num1 = random.Next(1000 + 1000) - 1000;
-            ViewBag.num2 = random.Next(1000 + 1000) - 1000;
-            return View();
-        }
-        public IActionResult HardSubAnswer(int answer, int num1, int num2)
-        {
-            int level = 3;
-            string type = "subtraction";
-            GetSubtractResult(answer, num1, num2, level, type);
-            return View();
+            if (level == 1)
+            {
+                ViewBag.num1 = random.Next(1, 11);
+                ViewBag.num2 = random.Next(1, 11);
+            }
+            else if (level == 2)
+            {
+                ViewBag.num1 = random.Next(1, 100);
+                ViewBag.num2 = random.Next(1, 100);
+            }
+            else if (level == 3)
+            {
+                ViewBag.num1 = random.Next(1000 + 1000) - 1000;
+                ViewBag.num2 = random.Next(1000 + 1000) - 1000;
+            }
         }
         public void GetAddResult(int answer, int num1, int num2, int level, string type)
         {
@@ -142,7 +114,7 @@ namespace EducationalGames.Controllers
             int correctAnswer = num1 - num2;
             if (answer == correctAnswer)
             {
-                Models.Math result = new Models.Math { UserId = id, GameLevel = level, Wins = 1, Type = type };
+                Models.Math result = new Models.Math { UserId = id, GameLevel = level, Wins = 1, Type = type};
                 if (ModelState.IsValid)
                 {
                     _context.Math.Add(result);

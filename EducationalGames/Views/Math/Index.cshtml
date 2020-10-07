@@ -2,13 +2,31 @@
 <h3> Math Challenges</h3>
 <br />
 <div>
-    Addition Challenges Easy: <button onclick="document.location='/Math/EasyAddition'">Get Challenge</button><br />
-    Addition Challenges Medium: <button onclick="document.location='/Math/MediumAddition'">Get Challenge</button><br />
-    Addition Challenges Hard: <button onclick="document.location='/Math/HardAddition'">Get Challenge</button><br />
+    <h3>Addition Challenges</h3>
+    <br />
+    <form action="/Math/Addition" method="post">
+        <label for="level"></label>
+        <select name="level" id="level">
+            <option value="">--------</option>
+            <option value="1">Easy</option>
+            <option value="2">Medium</option>
+            <option value="3">Hard</option>
+        </select>
+        <input type="submit" value="Get Problem" />
+    </form>
 </div>
+<br />
 <div>
-
-    Subtraction Challenges Easy: <button onclick="document.location='/Math/EasySubtraction'">Get Challenge</button><br />
-    Subtraction Challenges Medium: <button onclick="document.location='/Math/MediumSubtraction'">Get Challenge</button><br />
-    Subtraction Challenges Hard: <button onclick="document.location='/Math/HardSubtraction'">Get Challenge</button><br />
+    <h3>Subtraction Challenges</h3>
+    <br />
+    <form action="/Math/Subtraction" method="post">
+        <label for="level"></label>
+        <select name="level" id="level">
+            <option value="">--------</option>
+            <option value="1">Easy</option>
+            <option value="2">Medium</option>
+            <option value="3">Hard</option>
+        </select>
+        <input type="submit" value="Get Problem" />
+    </form>
 </div>

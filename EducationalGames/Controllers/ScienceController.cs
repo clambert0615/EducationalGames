@@ -13,6 +13,7 @@ namespace EducationalGames.Controllers
     {
         private readonly EducationDbContext _context;
         private readonly PeriodicTableDAL pt = new PeriodicTableDAL();
+        private readonly PlanetsDAL pd = new PlanetsDAL();
         public ScienceController(EducationDbContext Context)
         {
             _context = Context;
@@ -143,6 +144,43 @@ namespace EducationalGames.Controllers
             return View();
         }
 
+        public async Task<IActionResult> PlanetQuestions()
+        {
+            List<Planets> planetList = await pd.GetPlanets();
+            Random random = new Random();
+            int index = random.Next(30);
+            ViewBag.Question = planetList[index].Question;
+            ViewBag.Answer = planetList[index].Answer;
+            ViewBag.Type = planetList[index].Type;
+            return View(); 
+        }
+        public IActionResult PlanetAnswer(string userAnswer, string correctAnswer, string type)
+        {
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            string titleCaseAnswer = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(userAnswer);
 
+            if (titleCaseAnswer == correctAnswer)
+            {
+                Science science = new Science { UserId = id, Correct = 1, Type = type };
+                if (ModelState.IsValid)
+                {
+                    _context.Science.Add(science);
+                    _context.SaveChanges();
+                }
+                ViewBag.message = "Correct Answer!";
+            }
+            else
+            {
+                Science science = new Science { UserId = id, Incorrect = 1, Type = type };
+                if (ModelState.IsValid)
+                {
+                    _context.Science.Add(science);
+                    _context.SaveChanges();
+                }
+                ViewBag.message = $"That is incorrect. The correct answer is {correctAnswer}";
+            }
+            ViewBag.Type = type;
+            return View();
+        }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.Extensions.Configuration;
 
 namespace EducationalGames.Models
 {
@@ -10,11 +11,12 @@ namespace EducationalGames.Models
         {
         }
 
-        public EducationDbContext(DbContextOptions<EducationDbContext> options)
+        public EducationDbContext(DbContextOptions<EducationDbContext> options, IConfiguration configuration)
             : base(options)
         {
+            Configuration = configuration;
         }
-
+        public IConfiguration Configuration { get; private set; }
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
@@ -35,7 +37,7 @@ namespace EducationalGames.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=EducationDb;Trusted_Connection=True;");
+                optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             }
         }
 

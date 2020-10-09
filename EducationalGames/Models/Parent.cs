@@ -5,6 +5,11 @@ namespace EducationalGames.Models
 {
     public partial class Parent
     {
+        public Parent()
+        {
+            StudentParent = new HashSet<StudentParent>();
+        }
+
         public int ParentId { get; set; }
         public string UserId { get; set; }
         public string RoleId { get; set; }
@@ -12,5 +17,6 @@ namespace EducationalGames.Models
 
         public virtual AspNetRoles Role { get; set; }
         public virtual AspNetUsers User { get; set; }
+        public virtual ICollection<StudentParent> StudentParent { get; set; }
     }
 }

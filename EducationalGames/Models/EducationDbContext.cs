@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 namespace EducationalGames.Models
 {
@@ -11,12 +10,11 @@ namespace EducationalGames.Models
         {
         }
 
-        public EducationDbContext(DbContextOptions<EducationDbContext> options, IConfiguration configuration)
+        public EducationDbContext(DbContextOptions<EducationDbContext> options)
             : base(options)
         {
-            Configuration = configuration;
         }
-        public IConfiguration Configuration { get; set; }
+
         public virtual DbSet<AspNetRoleClaims> AspNetRoleClaims { get; set; }
         public virtual DbSet<AspNetRoles> AspNetRoles { get; set; }
         public virtual DbSet<AspNetUserClaims> AspNetUserClaims { get; set; }
@@ -27,6 +25,8 @@ namespace EducationalGames.Models
         public virtual DbSet<Math> Math { get; set; }
         public virtual DbSet<Parent> Parent { get; set; }
         public virtual DbSet<Science> Science { get; set; }
+        public virtual DbSet<StudentParent> StudentParent { get; set; }
+        public virtual DbSet<StudentTeacher> StudentTeacher { get; set; }
         public virtual DbSet<Students> Students { get; set; }
         public virtual DbSet<Teacher> Teacher { get; set; }
 
@@ -35,7 +35,7 @@ namespace EducationalGames.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. See http://go.microsoft.com/fwlink/?LinkId=723263 for guidance on storing connection strings.
-                optionsBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+                optionsBuilder.UseSqlServer("Server=.\\SQLExpress;Database=EducationDb;Trusted_Connection=True;");
             }
         }
 
@@ -186,6 +186,38 @@ namespace EducationalGames.Models
                     .WithMany(p => p.Science)
                     .HasForeignKey(d => d.UserId)
                     .HasConstraintName("FK__Science__UserId__160F4887");
+            });
+
+            modelBuilder.Entity<StudentParent>(entity =>
+            {
+                entity.HasKey(e => e.StudParentId)
+                    .HasName("PK__StudentP__498D132D944F57E3");
+
+                entity.HasOne(d => d.Parent)
+                    .WithMany(p => p.StudentParent)
+                    .HasForeignKey(d => d.ParentId)
+                    .HasConstraintName("FK__StudentPa__Paren__2DE6D218");
+
+                entity.HasOne(d => d.Student)
+                    .WithMany(p => p.StudentParent)
+                    .HasForeignKey(d => d.StudentId)
+                    .HasConstraintName("FK__StudentPa__Stude__2CF2ADDF");
+            });
+
+            modelBuilder.Entity<StudentTeacher>(entity =>
+            {
+                entity.HasKey(e => e.StudTeachId)
+                    .HasName("PK__StudentT__07C70A5EE87184B7");
+
+                entity.HasOne(d => d.Student)
+                    .WithMany(p => p.StudentTeacher)
+                    .HasForeignKey(d => d.StudentId)
+                    .HasConstraintName("FK__StudentTe__Stude__29221CFB");
+
+                entity.HasOne(d => d.Teacher)
+                    .WithMany(p => p.StudentTeacher)
+                    .HasForeignKey(d => d.TeacherId)
+                    .HasConstraintName("FK__StudentTe__Teach__2A164134");
             });
 
             modelBuilder.Entity<Students>(entity =>

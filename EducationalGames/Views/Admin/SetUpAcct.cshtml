@@ -1,0 +1,16 @@
+﻿<h1 style="text-align: center">Set Up Student, Teacher or Parent Id</h1>
+<br />
+<form action="/Admin/SetUpAcct" method="post">
+    <label for="type">Choose a Role: </label>
+    <select name="type" id="type">
+        <option value="">---------</option>
+        <option value="Student">Student</option>
+        <option value="Teacher">Teacher</option>
+        <option value="Parent">Parent</option>
+    </select><br />
+    <label for="firstName">Enter First Name: </label>
+    <input type="text" id="firstName" name="firstName" placeholder="First Name" /> <br />
+    <label for="lastName">Enter Last Name: </label>
+    <input type="text" id="lastName" name="lastName" placeholder="Last Name" /><br />
+    <input type="submit" value="Submit" />
+</form>

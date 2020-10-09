@@ -1,0 +1,22 @@
+﻿<h1 style="text-align:center">Administration Menu</h1>
+
+<div> @if (TempData["Message"] != null)
+{
+    <script type="text/javascript">
+        alert('@TempData["Message"]');
+    </script>
+}
+
+    </div>
+   
+<br />
+
+<ol>
+    <li>Manage Roles: <button onclick="document.location='/RoleManager/Index'">Go</button></li>
+    <li>Assign/Edit Users to Roles <button onclick="document.location='/UserRoles/Index'">Go</button></li>
+    <li>Set up Student, Teacher, or Parent Account <button onclick="document.location='/Admin/SetUpAcct'">Go</button></li>
+    <li>Assign Students to Teachers <button onclick="document.location='/Admin/GetStudtoTeacher'">Go</button></li>
+</ol>
+
+
+

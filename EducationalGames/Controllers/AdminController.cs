@@ -240,6 +240,79 @@ namespace EducationalGames.Controllers
             return View();
 
         }
+        [HttpGet]
+        public IActionResult RemoveStudFromTeacher()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult RemoveStudFromTeacher(string studentfirst, string studentlast, string teacherfirst, string teacherlast)
+        {
+            AspNetUsers studentUser = _context.AspNetUsers.FirstOrDefault(x => (x.FirstName == studentfirst) && (x.LastName == studentlast));
+            if (studentUser != null)
+            {
+                Students student = _context.Students.FirstOrDefault(x => x.UserId == studentUser.Id);
+                if (student != null)
+                {
+                    AspNetUsers teacherUser = _context.AspNetUsers.FirstOrDefault(x => (x.FirstName == teacherfirst) && (x.LastName == teacherlast));
+                    if (teacherUser != null)
+                    {
+                        Teacher teacher = _context.Teacher.FirstOrDefault(x => x.UserId == teacherUser.Id);
+                        if (teacher != null)
+                        {
+                            StudentTeacher st = _context.StudentTeacher.FirstOrDefault(x => (x.StudentId == student.StudentId) && (x.TeacherId == teacher.TeacherId));
+                            _context.StudentTeacher.Remove(st);
+                            _context.SaveChanges();
+
+                            TempData["Message"] = $"The student, {studentfirst} {studentlast}, has been removed from {teacherfirst} {teacherlast}.";
+                        }
+                    }
+                }
+            }
+            else
+            {
+                return RedirectToAction("ErrorPage");
+            }
+            return RedirectToAction("Index");
+        }
+
+    public IActionResult GetTeachStudList()
+        {
+            return View();
+        }
+        public IActionResult StudentTeacherList(string firstName, string lastName)
+        {
+            List<AspNetUsers> stList = new List<AspNetUsers>();
+            AspNetUsers teacherUser = _context.AspNetUsers.FirstOrDefault(x => (x.FirstName == firstName) && (x.LastName == lastName));
+           if (teacherUser != null)
+            {
+                Teacher teacher = _context.Teacher.FirstOrDefault(x => x.UserId == teacherUser.Id);
+                if(teacher != null)
+                {
+                    List<StudentTeacher> stIdList = _context.StudentTeacher.Where(x => x.TeacherId == teacher.TeacherId).ToList();
+                    foreach(StudentTeacher st in stIdList)
+                    {
+                        Students stud = _context.Students.FirstOrDefault(x => x.StudentId == st.StudentId);
+                        AspNetUsers user = _context.AspNetUsers.FirstOrDefault(x => x.Id == stud.UserId);
+                        stList.Add(user);
+
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("ErrorPage");
+                }
+            }
+           else
+            {
+                return RedirectToAction("ErrorPage");
+            }
+
+            return View(stList);
+        }
+
+
+
         public IActionResult ErrorPage()
         {
             return View();

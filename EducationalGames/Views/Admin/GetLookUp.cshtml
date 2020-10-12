@@ -1,0 +1,23 @@
+﻿<h1 style="text-align:center">Look Up Person by Name or Id</h1>
+<br />
+<h3>Use this form to look up a person by name to get their Id number, or by Id number to get their name.</h3>
+<br />
+<form action="/Admin/LookUp" method="post">
+    <label for="type">Choose the Role of the Person to Look Up: </label>
+    <select name="type" id="type">
+        <option value="">---------</option>
+        <option value="Student">Student</option>
+        <option value="Teacher">Teacher</option>
+        <option value="Parent">Parent</option>
+    </select><br /><br />
+    <h5>Enter the First and Last Name or the Id Number of the Person.</h5><br />
+    <label for="firstName">Enter First Name: </label>
+    <input type="text" id="firstName" name="firstName" placeholder="First Name" /> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+    <label for="lastName">Enter Last Name: </label>
+    <input type="text" id="lastName" name="lastName" placeholder="Last Name" /><br />
+    OR:<br />
+    <label for="id">Id Number</label>
+    <input type="number" id="id" name="id" /><br />
+    <input type="submit" value="Submit" />
+
+</form>

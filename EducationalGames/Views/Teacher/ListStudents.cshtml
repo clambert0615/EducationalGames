@@ -1,0 +1,24 @@
+﻿@using EducationalGames.Models
+@model List<AspNetUsers>
+<h1 style="text-align:center">Student List</h1>
+<br />
+
+<table style="width:100%" class="table-bordered">
+    <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Detailed Information</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (AspNetUsers s in Model)
+        {
+            <tr>
+                <td>@s.FirstName</td>
+                <td>@s.LastName</td>
+                <td><button onclick="document.location='/Teacher/DetailedInformation?id=@s.Id'">Detailed Information</button></td>
+            </tr>
+        }
+    </tbody>
+</table>

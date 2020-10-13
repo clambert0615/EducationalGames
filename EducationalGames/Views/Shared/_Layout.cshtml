@@ -40,7 +40,18 @@
                             <li class="nav-item">
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Student" asp-action="Index">Student Home</a>
                             </li>
-
+                        }
+                        @if (User.IsInRole("Teacher"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Teacher" asp-action="Index">Teacher Home</a>
+                            </li>
+                        }
+                        @if (User.IsInRole("Parent"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Parent" asp-action="Index">Parent Home</a>
+                            </li>
                         }
 </div>
             </div>

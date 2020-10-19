@@ -1,4 +1,12 @@
 ﻿<h3>Result: @ViewBag.message</h3>
+@if (ViewBag.message == "Correct Answer!")
+{
+    <img src="~/Images/F8H3.gif" />
+}
+else
+{
+    <img src="~/Images/tryagain.gif" />
+}
 
 <h5>Next Problem: <button onclick="document.location='/Science/PlanetQuestions'">Get Problem</button></h5>
 <br />

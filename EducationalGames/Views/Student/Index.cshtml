@@ -1,9 +1,26 @@
-﻿<h1 style="text-align:center">Student Homepage</h1>
+﻿<h1 style="text-align:center;color:red">Welcome @ViewBag.FirstName  @ViewBag.LastName</h1>
 <br />
 <h3>Challenges</h3>
-<p>Math Challenges: <button onclick="document.location='/Math/Index'">Math Index</button></p>
-<p>Science Challenges: <button onclick="document.location='/Science/Index'">Science Index</button></p>
+<br />
+<h5>Math Challenges: Get challenges in addition, subtraction, multiplication and division!</h5>
+<a href="/Math/Index">
+    <img src="~/Images/math.jpg" style="width:200px" />
+</a>
+<button onclick="document.location='/Math/Index'">Math Index</button>
+<br />
+<br />
+<h5>Science Challenges: Test your knowledge of the elements and planets! </h5>
+<a href="/Science/Index" >
+<img src="~/Images/science.jpg" style="width:200px"/>
+    </a>
+<button onclick="document.location='/Science/Index'">Science Index</button>
 
 <br />
+<hr style="height:2px;border-width:0;color:steelblue;background-color:red">
 <h3>Statistics</h3>
-<p>See all of your statistics here: <button onclick="document.location='/Student/Statistics'">Statistics</button></p>
+<br />
+<h5>See all of your statistics here:</h5>
+<a href="/Student/Statistics">
+    <img src="~/Images/stats.jpg" style="width:200px"/>
+</a>
+<button onclick="document.location='/Student/Statistics'">Statistics</button>

@@ -19,6 +19,9 @@ namespace EducationalGames.Controllers
         }
         public IActionResult Index()
         {
+            string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            ViewBag.FirstName = _context.AspNetUsers.Find(id).FirstName;
+            ViewBag.LastName = _context.AspNetUsers.Find(id).LastName;
             return View();
         }
         
@@ -27,10 +30,16 @@ namespace EducationalGames.Controllers
             string id = User.FindFirstValue(ClaimTypes.NameIdentifier);
             string firstName = _context.AspNetUsers.Find(id).FirstName;
             string lastName = _context.AspNetUsers.Find(id).LastName;
+            Students st = _context.Students.FirstOrDefault(x => x.UserId == id);
+            StudentTeacher stteach = _context.StudentTeacher.FirstOrDefault(x => x.StudentId == st.StudentId);
+            Teacher teach = _context.Teacher.FirstOrDefault(x => x.TeacherId == stteach.TeacherId);
+            AspNetUsers teachUser = _context.AspNetUsers.Find(teach.UserId);
+            string teachUserId = teachUser.Id;
             var routeValues = new RouteValueDictionary
             {
                 {"studentfirst", firstName },
-                {"studentlast", lastName }
+                {"studentlast", lastName },
+                {"teachuserId", teachUserId }
             };
  
             return RedirectToAction("StudentProgress", "Teacher", routeValues);

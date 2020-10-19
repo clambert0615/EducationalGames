@@ -6,7 +6,7 @@
 <form method="post">
     <div class="card">
         <div class="card-header">
-            <h2>Manage User Roles</h2>
+            <h2 style="text-align:center">Manage User Roles</h2>
             Add/Remove Roles for User: @ViewBag.UserName.
         </div>
         <div class="card-body">
@@ -24,14 +24,14 @@
             <div asp-validation-summary="All" class="text-danger"></div>
         </div>
         <div class="card-footer">
-            <input type="submit" value="Update" class="btn btn-primary"
-                   style="width:auto" />
+            <input type="submit" value="Update"  style="background-color:lightblue;width:auto"
+    />
 
         </div>
     </div>
 </form>
 <br />
-<button onclick="goBack()">Go Back</button>
+<button onclick="goBack()" style="background-color:lightblue">Go Back</button>
 
 <script>
     function goBack() {

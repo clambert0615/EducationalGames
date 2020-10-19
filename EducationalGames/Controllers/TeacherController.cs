@@ -69,12 +69,13 @@ namespace EducationalGames.Controllers
             return View();
         }
     
-        public IActionResult StudentProgress(string studentfirst, string studentlast)
+        public IActionResult StudentProgress(string studentfirst, string studentlast, string teachuserId)
         {            
             AspNetUsers userId = _context.AspNetUsers.FirstOrDefault(x => (x.FirstName == studentfirst) && (x.LastName == studentlast));
             string id = userId.Id;
             ViewBag.FirstName = studentfirst;
             ViewBag.LastName = studentlast;
+            
             SetMath(id, "addition", 1);
             SetMath(id, "addition", 2);
             SetMath(id, "addition", 3);
@@ -93,6 +94,24 @@ namespace EducationalGames.Controllers
             SetScience(id, "symboltoname");
             SetScience(id, "shortanswer");
             SetScience(id, "trueorfalse");
+            SetMathAverage("addition", 1, teachuserId);
+            SetMathAverage("addition", 2, teachuserId);
+            SetMathAverage("addition", 3, teachuserId);
+            SetMathAverage("subtraction", 1, teachuserId);
+            SetMathAverage("subtraction", 2 , teachuserId);
+            SetMathAverage("subtraction", 3 , teachuserId);
+            SetMathAverage("multiplication", 1 , teachuserId);
+            SetMathAverage("multiplication", 2, teachuserId);
+            SetMathAverage("multiplication", 3, teachuserId);
+            SetMathAverage("division", 1, teachuserId);
+            SetMathAverage("division", 2, teachuserId);
+            SetMathAverage("division", 3, teachuserId);
+            SetScienceAverage("numbertoname", teachuserId);
+            SetScienceAverage("nametonumber", teachuserId);
+            SetScienceAverage("nametosymbol", teachuserId);
+            SetScienceAverage("symboltoname", teachuserId);
+            SetScienceAverage("shortanswer", teachuserId);
+            SetScienceAverage("trueorfalse", teachuserId);
 
 
             return View();
@@ -124,6 +143,91 @@ namespace EducationalGames.Controllers
                 ViewData[incorrect] = ((decimal?)ViewData[incorrect] ?? 0) + (s.Incorrect ?? 0);
                 ViewData[percent] = System.Math.Round((((decimal?)ViewData[correct] ?? 0) / (((decimal?)ViewData[correct] ?? 0) + ((decimal?)ViewData[incorrect] ?? 0))) * 100, 1);
 
+            }
+        }
+        public void SetMathAverage(string type, int gameLevel, string teachUserId)
+        {
+            string id;
+            if (teachUserId == null)
+            {
+                id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            }
+            else
+            {
+                id = teachUserId;
+            }
+            List<AspNetUsers> stList = new List<AspNetUsers>();
+            decimal correctAverage = 0;
+            decimal incorrectAverage = 0;
+            Teacher teacherId = _context.Teacher.FirstOrDefault(x => x.UserId == id);
+            if (teacherId != null)
+            {
+                List<StudentTeacher> stIdList = _context.StudentTeacher.Where(x => x.TeacherId == teacherId.TeacherId).ToList();
+                foreach (StudentTeacher st in stIdList)
+                {
+                    Students stud = _context.Students.FirstOrDefault(x => x.StudentId == st.StudentId);
+                    AspNetUsers user = _context.AspNetUsers.FirstOrDefault(x => x.Id == stud.UserId);
+                    List<Models.Math> stats = _context.Math.Where(x => (x.UserId == user.Id) && (x.Type == type) && (x.GameLevel == gameLevel)).ToList();
+                    foreach(Models.Math s in stats)
+                    {
+                        correctAverage += s.Wins ?? 0;
+                        incorrectAverage += s.Losses ?? 0;
+
+                    }
+
+                }
+            }
+            string percent = $"{type}Level{gameLevel}AveragePercent";
+            if (correctAverage + incorrectAverage == 0)
+            {
+                ViewData[percent] = 0;
+            }
+            else
+            {
+                ViewData[percent] = System.Math.Round((correctAverage) / ((correctAverage + incorrectAverage)) * 100, 1);
+            }
+        }
+        public void SetScienceAverage(string type, string teachUserId)
+        {
+            string id;
+            if (teachUserId == null)
+            {
+                id = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            }
+            else
+            {
+                id = teachUserId;
+            }
+          
+            List<AspNetUsers> stList = new List<AspNetUsers>();
+            decimal correctAverage = 0;
+            decimal incorrectAverage = 0;
+            Teacher teacherId = _context.Teacher.FirstOrDefault(x => x.UserId == id);
+            if (teacherId != null)
+            {
+                List<StudentTeacher> stIdList = _context.StudentTeacher.Where(x => x.TeacherId == teacherId.TeacherId).ToList();
+                foreach (StudentTeacher st in stIdList)
+                {
+                    Students stud = _context.Students.FirstOrDefault(x => x.StudentId == st.StudentId);
+                    AspNetUsers user = _context.AspNetUsers.FirstOrDefault(x => x.Id == stud.UserId);
+                    List<Science> stats = _context.Science.Where(x => (x.UserId == user.Id) && (x.Type == type)).ToList();
+                    foreach (Science s in stats)
+                    {
+                        correctAverage += s.Correct ?? 0;
+                        incorrectAverage += s.Incorrect ?? 0;
+
+                    }
+
+                }
+            }
+            string percent = $"{type}Average";
+            if (correctAverage + incorrectAverage == 0)
+            {
+                ViewData[percent] = 0;
+            }
+            else
+            {
+                ViewData[percent] = System.Math.Round((correctAverage) / ((correctAverage + incorrectAverage)) * 100, 1);
             }
         }
     }

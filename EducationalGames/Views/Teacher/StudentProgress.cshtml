@@ -8,6 +8,7 @@
             <th onclick="sortTable(1)" style="cursor:pointer">Correct</th>
             <th onclick="sortTable(2)" style="cursor:pointer">Incorrect</th>
             <th onclick="sortTable(3)" style="cursor:pointer">Percent Correct</th>
+            <th onclick="sortTable(4)" style="cursor:pointer">Class Average (Percent Correct)</th>
         </tr>
     </thead>
     <tbody>
@@ -16,6 +17,7 @@
             <td class="td1">@ViewData["additionLevel1Correct"]</td>
             <td class="td1">@ViewData["additionLevel1Incorrect"]</td>
             <td class="td1">@ViewData["additionLevel1Percent"]</td>
+            <td class="td1">@ViewData["additionLevel1AveragePercent"]</td>
 
         </tr>
         <tr>
@@ -23,106 +25,129 @@
             <td class="td1">@ViewData["additionLevel2Correct"]</td>
             <td class="td1">@ViewData["additionLevel2Incorrect"]</td>
             <td class="td1">@ViewData["additionLevel2Percent"]</td>
+            <td class="td1">@ViewData["additionLevel2AveragePercent"]</td>
         </tr>
         <tr>
             <td class="td1">Addition Level 3</td>
             <td class="td1">@ViewData["additionLevel3Correct"]</td>
             <td class="td1">@ViewData["additionLevel3Incorrect"]</td>
             <td class="td1">@ViewData["additionLevel3Percent"]</td>
+            <td class="td1">@ViewData["additionLevel3AveragePercent"]</td>
         </tr>
         <tr>
             <td class="td1">Subtraction Level 1</td>
             <td class="td1">@ViewData["subtractionLevel1Correct"]</td>
             <td class="td1">@ViewData["subtractionLevel1Incorrect"]</td>
             <td class="td1">@ViewData["subtractionLevel1Percent"]</td>
+            <td class="td1">@ViewData["subtractionLevel1AveragePercent"]</td>
         </tr>
         <tr>
             <td class="td1">Subtraction Level 2</td>
             <td class="td1">@ViewData["subtractionLevel2Correct"]</td>
             <td class="td1">@ViewData["subtractionLevel2Incorrect"]</td>
             <td class="td1">@ViewData["subtractionLevel2Percent"]</td>
+            <td class="td1">@ViewData["subtractionLevel2AveragePercent"]</td>
         </tr>
         <tr>
             <td class="td1">Subtraction Level 3</td>
             <td class="td1">@ViewData["multiplicationLevel3Correct"]</td>
             <td class="td1">@ViewData["multiplicationLevel3Incorrect"]</td>
             <td class="td1">@ViewData["subtractionLevel3Percent"]</td>
+            <td class="td1">@ViewData["subtractionLevel3AveragePercent"]</td>
         </tr>
         <tr>
             <td class="td1">Multiplication Level 1</td>
             <td class="td1">@ViewData["multiplicationLevel1Correct"]</td>
             <td class="td1">@ViewData["multiplicationLevel1Incorrect"]</td>
             <td class="td1">@ViewData["multiplicationLevel1Percent"]</td>
+            <td class="td1">@ViewData["multiplicationLevel1AveragePercent"]</td>
         </tr>
         <tr>
             <td class="td1">Multiplication Level 2</td>
             <td class="td1">@ViewData["multiplicationLevel2Correct"]</td>
             <td class="td1">@ViewData["multiplicationLevel2Incorrect"]</td>
             <td class="td1">@ViewData["multiplicationLevel2Percent"]</td>
+            <td class="td1">@ViewData["multiplicationLevel2AveragePercent"]</td>
         </tr>
         <tr>
             <td class="td1">Multiplication Level 3</td>
             <td class="td1">@ViewData["multiplicationLevel3Correct"]</td>
             <td class="td1">@ViewData["multiplicationLevel3Incorrect"]</td>
             <td class="td1">@ViewData["multiplicationLevel3Percent"]</td>
+            <td class="td1">@ViewData["multiplicationLevel3AveragePercent"]</td>
         </tr>
         <tr>
             <td class="td1">Division Level 1</td>
             <td class="td1">@ViewData["divisionLevel1Correct"]</td>
             <td class="td1">@ViewData["divisionLevel1Incorrect"]</td>
             <td class="td1">@ViewData["divisionLevel1Percent"]</td>
+            <td class="td1">@ViewData["divisionLevel1AveragePercent"]</td>
         </tr>
         <tr>
             <td class="td1">Division Level 2</td>
             <td class="td1">@ViewData["divisionLevel2Correct"]</td>
             <td class="td1">@ViewData["divisionLevel2Incorrect"]</td>
             <td class="td1">@ViewData["divisionLevel2Percent"]</td>
+            <td class="td1">@ViewData["divisionLevel2AveragePercent"]</td>
         </tr>
         <tr>
             <td class="td1">Division Level 3</td>
             <td class="td1">@ViewData["divisionLevel3Correct"]</td>
             <td class="td1">@ViewData["divisionLevel3Incorrect"]</td>
             <td class="td1">@ViewData["divisionLevel3Percent"]</td>
+            <td class="td1">@ViewData["divisionLevel3AveragePercent"]</td>
         </tr>
         <tr>
             <td class="td1">Science: Periodic Table - Number to Name</td>
             <td class="td1">@ViewData["numbertonameCorrect"]</td>
             <td class="td1">@ViewData["numbertonameIncorrect"]</td>
             <td class="td1">@ViewData["numbertonamePercent"]</td>
+            <td class="td1">@ViewData["numbertonameAverage"]</td>
         </tr>
         <tr>
             <td class="td1">Science: Periodic Table - Name to Number</td>
             <td class="td1">@ViewData["nametonumberCorrect"]</td>
             <td class="td1">@ViewData["nametonumberIncorrect"]</td>
             <td class="td1">@ViewData["nametonumberPercent"]</td>
+            <td class="td1">@ViewData["nametonumberAverage"]</td>
         </tr>
         <tr>
             <td class="td1">Science: Periodic Table - Name to Symbol</td>
             <td class="td1">@ViewData["nametosymbolCorrect"]</td>
             <td class="td1">@ViewData["nametosymbolIncorrect"]</td>
             <td class="td1">@ViewData["nametosymbolPercent"]</td>
+            <td class="td1">@ViewData["nametosymbolAverage"]</td>
         </tr>
         <tr>
             <td class="td1">Science: Periodic Table - Symbol to Name</td>
             <td class="td1">@ViewData["symboltonameCorrect"]</td>
             <td class="td1">@ViewData["symboltonameIncorrect"]</td>
             <td class="td1">@ViewData["symboltonamePercent"]</td>
+            <td class="td1">@ViewData["symboltonameAverage"]</td>
         </tr>
         <tr>
             <td class="td1">Science: Planet - Short Answer</td>
             <td class="td1">@ViewData["shortanswerCorrect"]</td>
             <td class="td1">@ViewData["shortanswerIncorrect"]</td>
             <td class="td1">@ViewData["shortanswerPercent"]</td>
+            <td class="td1">@ViewData["shortanswerAverage"]</td>
         </tr>
         <tr>
             <td class="td1">Science: Planet - True/False</td>
             <td class="td1">@ViewData["trueorfalseCorrect"]</td>
             <td class="td1">@ViewData["trueorfalseIncorrect"]</td>
             <td class="td1">@ViewData["trueorfalsePercent"]</td>
+            <td class="td1">@ViewData["trueorfalseAverage"]</td>
         </tr>
     </tbody>
 </table>
+<button onclick="goBack()" style="background-color:lightblue">Go Back</button>
 
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
 
 <script>
     function sortTable(n) {

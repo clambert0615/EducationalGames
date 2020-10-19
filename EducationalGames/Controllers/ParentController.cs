@@ -55,14 +55,17 @@ namespace EducationalGames.Controllers
             ViewBag.TeacherEmail = teachUser.Email;
             ViewBag.TeacherFirstName = teachUser.FirstName;
             ViewBag.TeacherLastName = teachUser.LastName;
+            ViewBag.TeachUserId = teachUser.Id;
             return View();
         }
-        public IActionResult ProgressReport(string firstName, string lastName)
+        public IActionResult ProgressReport(string firstName, string lastName, string teachUserId)
         {
             var routeValues = new RouteValueDictionary
             {
                 {"studentfirst", firstName },
-                {"studentlast", lastName }
+                {"studentlast", lastName },
+                {"teachuserId", teachUserId }
+
             };
 
             return RedirectToAction("StudentProgress", "Teacher", routeValues);

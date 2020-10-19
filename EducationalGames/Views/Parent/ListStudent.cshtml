@@ -5,7 +5,6 @@
 @foreach(AspNetUsers st in Model)
 {
     <ol>
-        <li><a href="/Parent/StudDetails?id=@st.Id">@st.FirstName  @st.LastName</a>
-        &nbsp;&nbsp;&nbsp;&nbsp;<button onclick="document.location='/Parent/ProgressReport?firstName=@st.FirstName&lastName=@st.LastName'">View Progress Report</button></li>
+        <li><a href="/Parent/StudDetails?id=@st.Id">@st.FirstName  @st.LastName</a></li>
     </ol>
 }

@@ -3,4 +3,13 @@
 <p><b>Student Email: </b> @ViewBag.StudentEmail</p>
 <p><b>Teacher: </b> @ViewBag.TeacherFirstName  @ViewBag.TeacherLastName</p>
 <p><b>Teacher Email: </b> @ViewBag.TeacherEmail</p>
-<p><button onclick="document.location='/Parent/ProgressReport?firstName=@ViewBag.StudentFirstName&lastName=@ViewBag.StudentLastName&teachUserId=@ViewBag.TeachUserId'">Progress Report</button></p>
+<p><button onclick="document.location='/Parent/ProgressReport?firstName=@ViewBag.StudentFirstName&lastName=@ViewBag.StudentLastName&teachUserId=@ViewBag.TeachUserId'"  style="background-color:lightblue">Progress Report</button></p>
+<br />
+<br />
+<button onclick="goBack()" style="background-color:lightblue">Go Back</button>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>

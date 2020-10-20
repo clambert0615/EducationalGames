@@ -1,13 +1,21 @@
-﻿<h3> Addition Problem</h3>
+﻿<h1 style="color:dodgerblue;text-align:center"> Addition Problem</h1>
 <br />
-<h5>&nbsp;&nbsp;&nbsp; @ViewBag.num1 <br />
+<div style="text-align:center">
+    <div style="margin-right:550px">
+<h3 style="text-align:right">&nbsp;&nbsp;&nbsp; @ViewBag.num1 <br />
     + &nbsp;@ViewBag.num2
-    </h5>
+    </h3>
+        </div>
+    
 <br />
 <form action="/Math/AddAnswer" method="post">
     Answer:  <input type="number" id="answer" name="answer" />
     <input type="hidden" id="num1" name="num1" value="@ViewBag.num1" />
     <input type="hidden" id="num2" name="num2" value="@ViewBag.num2" />
     <input type="hidden" id="level" name="level" value="@ViewBag.Level" />
-    <input type="submit" value="Submit Answer" />
+    <input type="submit" value="Submit Answer" style="background-color:lightblue" />
+   
 </form>
+</div> 
+<br />
+<button onclick="document.location='/Math/Index'" style="background-color:lightblue">Return to Math Index</button>

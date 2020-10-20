@@ -42,7 +42,7 @@ namespace EducationalGames.Controllers
             }
             else
             {
-                return RedirectToAction("ErrorPage");
+                return RedirectToAction("ErrorPage", "Home");
             }
             return View(stList);
         }
@@ -230,6 +230,7 @@ namespace EducationalGames.Controllers
                 ViewData[percent] = System.Math.Round((correctAverage) / ((correctAverage + incorrectAverage)) * 100, 1);
             }
         }
+     
     }
 
 }

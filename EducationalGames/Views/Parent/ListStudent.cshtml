@@ -2,9 +2,22 @@
 
 @model List<AspNetUsers>
 
-@foreach(AspNetUsers st in Model)
+<h1 style="text-align:center">Your Students</h1>
+<br />
+<div>
+@foreach (AspNetUsers st in Model)
 {
     <ol>
-        <li><a href="/Parent/StudDetails?id=@st.Id">@st.FirstName  @st.LastName</a></li>
+        <li style="font-size:40px"><a href="/Parent/StudDetails?id=@st.Id">@st.FirstName  @st.LastName</a></li>
     </ol>
 }
+<br />
+<br />
+    </div>
+<button onclick="goBack()" style="background-color:lightblue;position:absolute;margin-top:200px;margin-left:10px">Go Back</button>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>

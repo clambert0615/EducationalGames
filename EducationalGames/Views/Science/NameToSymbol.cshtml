@@ -1,11 +1,15 @@
-﻿<h3>Periodic Table Question</h3>
+﻿<h1 style="text-align:center;color:steelblue">Periodic Table Question</h1>
 <br />
-<h5>Question: If the element's name is @ViewBag.Name then what is the symbol of this element?</h5>
-<br />
-<form action="/Science/PerTableStringAnswer" method="post">
-    Answer: <input type="text" id="answer" name="answer" />
-    <input type="hidden" id="correctAnswer" name="correctAnswer" value="@ViewBag.Symbol" />
-    <input type="hidden" id="type" name="type" value="@ViewBag.Type" />
-    <input type="submit" value="Submit">
+<div style="text-align:center">
+    <h5>Question: If the element's name is @ViewBag.Name then what is the symbol of this element?</h5>
+    <br />
+    <form action="/Science/PerTableStringAnswer" method="post">
+        Answer: <input type="text" id="answer" name="answer" />
+        <input type="hidden" id="correctAnswer" name="correctAnswer" value="@ViewBag.Symbol" />
+        <input type="hidden" id="type" name="type" value="@ViewBag.Type" />
+        <input type="submit" value="Submit" style="background-color:lightblue" />
 
-</form>
+    </form>
+    </div>
+<br />
+<button onclick="document.location='/Science/Index'" style="background-color:lightblue">Return to Science Index</button>

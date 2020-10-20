@@ -39,7 +39,7 @@ namespace EducationalGames.Controllers
             }
             else
             {
-                return RedirectToAction("ErrorPage");
+                return RedirectToAction("ErrorPage", "Home");
             }
             return View(stList);
         }
@@ -69,6 +69,7 @@ namespace EducationalGames.Controllers
             };
 
             return RedirectToAction("StudentProgress", "Teacher", routeValues);
-        }
+        } 
+       
     }
 }

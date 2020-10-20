@@ -1,13 +1,20 @@
-﻿<h3>Division Problems</h3>
+﻿<h1 style="color:mediumorchid;text-align:center">Division Problems</h1>
 <br />
-<h5>&nbsp;&nbsp; @ViewBag.Dividend <br />
-    / &nbsp; @ViewBag.Divisor
-</h5>
+<div style="text-align:center">
+    <div style="margin-right:550px">
+        <h3 style="text-align:right">
+            &nbsp;&nbsp; @ViewBag.Dividend <br />
+            / &nbsp; @ViewBag.Divisor
+        </h3>
+    </div>
+    <br />
+    <form action="/Math/DivAnswer" method="post">
+        Answer:  <input type="number" id="answer" name="answer" />
+        <input type="hidden" id="divisor" name="divisor" value="@ViewBag.Divisor" />
+        <input type="hidden" id="dividend" name="dividend" value="@ViewBag.Dividend" />
+        <input type="hidden" id="level" name="level" value="@ViewBag.Level" />
+        <input type="submit" value="Submit Answer" style="background-color:lightblue" />
+    </form>
+</div>
 <br />
-<form action="/Math/DivAnswer" method="post">
-    Answer:  <input type="number" id="answer" name="answer" />
-    <input type="hidden" id="divisor" name="divisor" value="@ViewBag.Divisor" />
-    <input type="hidden" id="dividend" name="dividend" value="@ViewBag.Dividend" />
-    <input type="hidden" id="level" name="level" value="@ViewBag.Level" />
-    <input type="submit" value="Submit Answer" />
-</form>
+<button onclick="document.location='/Math/Index'" style="background-color:lightblue">Return to Math Index</button>

@@ -28,7 +28,7 @@ namespace EducationalGames.Controllers
             }
             else
             {
-                return RedirectToAction("ErrorPage");
+                return RedirectToAction("ErrorPage", "Home");
             }
             ViewBag.Level = level;
             return View();
@@ -50,7 +50,7 @@ namespace EducationalGames.Controllers
             }
             else
             {
-                return RedirectToAction("ErrorPage");
+                return RedirectToAction("ErrorPage", "Home");
             }
             ViewBag.Level = level;
             return View();
@@ -71,7 +71,7 @@ namespace EducationalGames.Controllers
             }
             else
             {
-                return RedirectToAction("ErrorPage");
+                return RedirectToAction("ErrorPage", "Home");
             }
             ViewBag.Level = level;
             return View();
@@ -107,7 +107,7 @@ namespace EducationalGames.Controllers
             }
             else
             {
-                return RedirectToAction("ErrorPage");
+                return RedirectToAction("ErrorPage", "Home");
             }
             ViewBag.Divisor = divisor;
             ViewBag.Dividend = dividend;
@@ -185,6 +185,6 @@ namespace EducationalGames.Controllers
 
             }
         }
-        
+      
      }
 }

@@ -53,7 +53,7 @@ namespace EducationalGames.Controllers
             }
            else
             {
-                return RedirectToAction("ErrorPage");
+                return RedirectToAction("ErrorPage", "Home");
             }
         }
         public IActionResult NumberToName()
@@ -182,5 +182,6 @@ namespace EducationalGames.Controllers
             ViewBag.Type = type;
             return View();
         }
+     
     }
 }

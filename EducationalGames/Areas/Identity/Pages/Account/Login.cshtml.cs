@@ -105,8 +105,39 @@ namespace EducationalGames.Areas.Identity.Pages.Account
                 var result = await _signInManager.PasswordSignInAsync(userName, Input.Password, Input.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    var user = await _signInManager.UserManager.FindByEmailAsync(Input.Email);
+                    if(user == null)
+                    {
+                        user = await _signInManager.UserManager.FindByNameAsync(userName);
+                    }
+                    IList<string> roles = await _signInManager.UserManager.GetRolesAsync(user);
+
+                    if (roles.Contains("Admin"))
+                    {
+                        _logger.LogInformation("User logged in.");
+                        return RedirectToAction("Index", "Admin");
+                    }
+                    else if (roles.Contains("Student"))
+                    {
+                        _logger.LogInformation("User logged in.");
+                        return RedirectToAction("Index", "Student");
+                    }
+                    else if (roles.Contains("Parent"))
+                    {
+                        _logger.LogInformation("User logged in.");
+                        return RedirectToAction("Index", "Parent");
+                    }
+                    else if (roles.Contains("Teacher"))
+                    {
+                        _logger.LogInformation("User logged in.");
+                        return RedirectToAction("Index", "Teacher");
+
+                    }
+                    else
+                    {
+                        _logger.LogInformation("User logged in.");
+                        return LocalRedirect(returnUrl);
+                    }
                 }
                 if (result.RequiresTwoFactor)
                 {

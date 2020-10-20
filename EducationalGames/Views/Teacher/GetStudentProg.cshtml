@@ -5,5 +5,13 @@
     <input type="text" id="studentfirst" name="studentfirst" placeholder="First Name" /> <br />
     <label for="studentlast">Enter Student Last Name: </label>
     <input type="text" id="studentlast" name="studentlast" placeholder="Last Name" /><br />
-    <input type="submit" value="Submit" />
+    <input type="submit" value="Submit" style="background-color:lightblue" />
+
 </form>
+<br />
+<button onclick="goBack()" style="background-color:lightblue">Go Back</button>
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>

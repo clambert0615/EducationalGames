@@ -54,7 +54,7 @@ namespace EducationalGames.Controllers
             }
             else
             {
-                return RedirectToAction("ErrorPage");
+                return RedirectToAction("ErrorPage", "Home");
             }
             TempData["Message"] = $"Success! A new Id for {type} has been automatically created.";
             return RedirectToAction("Index");
@@ -88,7 +88,7 @@ namespace EducationalGames.Controllers
             }
             else
             {
-                return RedirectToAction("ErrorPage");
+                return RedirectToAction("ErrorPage", "Home");
             }
             return RedirectToAction("Index");
         }
@@ -121,7 +121,7 @@ namespace EducationalGames.Controllers
             }
             else
             {
-                return RedirectToAction("ErrorPage");
+                return RedirectToAction("ErrorPage", "Home");
             }
             return RedirectToAction("Index");
         }
@@ -145,7 +145,7 @@ namespace EducationalGames.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("ErrorPage");
+                        return RedirectToAction("ErrorPage", "Home");
                     }
                 }
                 else if (type == "Teacher" && id == 0)
@@ -159,7 +159,7 @@ namespace EducationalGames.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("ErrorPage");
+                        return RedirectToAction("ErrorPage", "Home");
                     }
                 }
                 else if (type == "Parent" && id == 0)
@@ -173,68 +173,69 @@ namespace EducationalGames.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("ErrorPage");
+                        return RedirectToAction("ErrorPage", "Home");
                     }
                 }
-                else if (type == "Student" && firstName == null && lastName == null)
+            }
+            else if (type == "Student" && firstName == null && lastName == null)
+            {
+                Students student = _context.Students.FirstOrDefault(x => x.StudentId == id);
+                if (student != null)
                 {
-                    Students student = _context.Students.FirstOrDefault(x => x.StudentId == id);
-                    if (student != null)
+                    AspNetUsers stUser = _context.AspNetUsers.FirstOrDefault(x => x.Id == student.UserId);
+                    if (stUser != null)
                     {
-                        AspNetUsers stUser = _context.AspNetUsers.FirstOrDefault(x => x.Id == student.UserId);
-                        if (stUser != null)
-                        {
-                            ViewBag.FirstName = stUser.FirstName;
-                            ViewBag.LastName = stUser.LastName;
-                            ViewBag.Id = id;
-                        }
+                        ViewBag.FirstName = stUser.FirstName;
+                        ViewBag.LastName = stUser.LastName;
+                        ViewBag.Id = id;
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("ErrorPage", "Home");
+                }
+            }
+            else if (type == "Parent" && firstName == null && lastName == null)
+            {
+                Parent parent = _context.Parent.FirstOrDefault(x => x.ParentId == id);
+                if (parent != null)
+                {
+                    AspNetUsers paUser = _context.AspNetUsers.FirstOrDefault(x => x.Id == parent.UserId);
+                    if (paUser != null)
+                    {
+                        ViewBag.FirstName = paUser.FirstName;
+                        ViewBag.LastName = paUser.LastName;
+                        ViewBag.Id = id;
                     }
                     else
                     {
-                        return RedirectToAction("ErrorPage");
+                        return RedirectToAction("ErrorPage", "Home");
                     }
                 }
-                else if (type == "Parent" && firstName == null && lastName == null)
-                {
-                    Parent parent = _context.Parent.FirstOrDefault(x => x.ParentId == id);
-                    if (parent != null)
-                    {
-                        AspNetUsers paUser = _context.AspNetUsers.FirstOrDefault(x => x.Id == parent.UserId);
-                        if (paUser != null)
-                        {
-                            ViewBag.FirstName = paUser.FirstName;
-                            ViewBag.LastName = paUser.LastName;
-                            ViewBag.Id = id;
-                        }
-                        else
-                        {
-                            return RedirectToAction("ErrorPage");
-                        }
-                    }
-                }
-                else if (type == "Teacher" && firstName == null && lastName == null)
-                {
-                    Teacher teacher = _context.Teacher.FirstOrDefault(x => x.TeacherId == id);
-                    if (teacher != null)
-                    {
-                        AspNetUsers teUser = _context.AspNetUsers.FirstOrDefault(x => x.Id == teacher.UserId);
-                        if (teUser != null)
-                        {
-                            ViewBag.FirstName = teUser.FirstName;
-                            ViewBag.LastName = teUser.LastName;
-                            ViewBag.Id = id;
-                        }
-                        else
-                        {
-                            return RedirectToAction("ErrorPage");
-                        }
-                    }
-                }
-               
             }
+            else if (type == "Teacher" && firstName == null && lastName == null)
+            {
+                Teacher teacher = _context.Teacher.FirstOrDefault(x => x.TeacherId == id);
+                if (teacher != null)
+                {
+                    AspNetUsers teUser = _context.AspNetUsers.FirstOrDefault(x => x.Id == teacher.UserId);
+                    if (teUser != null)
+                    {
+                        ViewBag.FirstName = teUser.FirstName;
+                        ViewBag.LastName = teUser.LastName;
+                        ViewBag.Id = id;
+                    }
+                    else
+                    {
+                        return RedirectToAction("ErrorPage", "Home");
+                    }
+                }
+            }
+               
+            
             else
             {
-                return RedirectToAction("ErrorPage");
+                return RedirectToAction("ErrorPage", "Home");
             }
             ViewBag.Type = type;
             return View();
@@ -271,7 +272,7 @@ namespace EducationalGames.Controllers
             }
             else
             {
-                return RedirectToAction("ErrorPage");
+                return RedirectToAction("ErrorPage", "Home");
             }
             return RedirectToAction("Index");
         }
@@ -300,12 +301,12 @@ namespace EducationalGames.Controllers
                 }
                 else
                 {
-                    return RedirectToAction("ErrorPage");
+                    return RedirectToAction("ErrorPage", "Home");
                 }
             }
            else
             {
-                return RedirectToAction("ErrorPage");
+                return RedirectToAction("ErrorPage", "Home");
             }
 
             return View(stList);
@@ -313,9 +314,6 @@ namespace EducationalGames.Controllers
 
 
 
-        public IActionResult ErrorPage()
-        {
-            return View();
-        }
+      
     }
 }

@@ -1,4 +1,5 @@
-﻿<h3>Result: @ViewBag.message</h3>
+﻿<h1 style="color:dodgerblue;text-align:center">Result: @ViewBag.message</h1>
+<div style="text-align:center">
 @if(ViewBag.message == "Correct Answer!")
 {
       <img src="~/Images/F8H3.gif" />
@@ -7,6 +8,10 @@ else
 {
      <img src="~/Images/tryagain.gif" />
 }
-<h5>Next Problem: <button onclick="document.location='/Math/Addition?level=@ViewBag.Level'">Get Challenge</button></h5>
+    <br />
+    <br />
+
+<h5>Next Problem: <button onclick="document.location='/Math/Addition?level=@ViewBag.Level'" style="background-color:lightblue">Get Challenge</button></h5>
 <br />
-<button onclick="document.location='/Math/Index'">Return to Math Index</button>
+    </div>
+<button onclick="document.location='/Math/Index'" style="background-color:lightblue">Return to Math Index</button>

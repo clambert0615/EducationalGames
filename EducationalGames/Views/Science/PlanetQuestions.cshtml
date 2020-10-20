@@ -1,12 +1,16 @@
-﻿<h3> Planet Problem</h3>
+﻿<h1 style="text-align:center;color:aqua"> Planet Problem</h1>
 <br />
-<h5>
-  @ViewBag.Question
-</h5>
-<br />
-<form action="/Science/PlanetAnswer" method="post">
-    Answer:  <input type="text" id="userAnswer" name="userAnswer" />
-    <input type="hidden" id="correctAnswer" name="correctAnswer" value="@ViewBag.Answer" />
-    <input type="hidden" id="type" name="type" value="@ViewBag.Type" />
-    <input type="submit" value="Submit Answer" />
-</form>
+<div style="text-align:center">
+    <h3>
+        @ViewBag.Question
+    </h3>
+    <br />
+    <form action="/Science/PlanetAnswer" method="post">
+        Answer:  <input type="text" id="userAnswer" name="userAnswer" />
+        <input type="hidden" id="correctAnswer" name="correctAnswer" value="@ViewBag.Answer" />
+        <input type="hidden" id="type" name="type" value="@ViewBag.Type" />
+        <input type="submit" value="Submit Answer" style="background-color:lightblue" />
+    </form>
+    </div>
+    <br />
+    <button onclick="document.location='/Science/Index'" style="background-color:lightblue">Return to Science Index</button>
